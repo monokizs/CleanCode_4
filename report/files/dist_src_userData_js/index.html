@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">56.08</p>
+      <p class="stat">75.30</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">48</p>
+      <p class="stat">70</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">21.59</p>
+      <p class="stat">24.52</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.18</p>
+      <p class="stat">0.24</p>
     </div>
   </div>
 </div>
@@ -113,27 +113,49 @@ class UserData {
     //     } 
     //     return result; 
     // }
-    processUserData(x, y, activeUser, accounts, b, accessUser, account, numberOfTry) {
-        let result = &#039;&#039;;
+    // public processUserData(x: number, y: string, activeUser: boolean, accounts: string[], b: number, accessUser: boolean, account: string, numberOfTry: number): string { 
+    //     let result = &#039;&#039;; 
+    //     if (activeUser &amp;&amp; accessUser) { 
+    //         for (let i = 0; i &lt; accounts.length; i++) { 
+    //             if (accounts[i] === account) { 
+    //                 result += &#039;User found: &#039; + account + &#039; at index &#039; + i; 
+    //                 break; 
+    //             } 
+    //         } 
+    //     } else if (!activeUser &amp;&amp; accessUser) { 
+    //         let count = 0; 
+    //         while (count &lt; numberOfTry) { 
+    //             result += &#039;Processing... &#039;; 
+    //             count++; 
+    //         } 
+    //     } else { 
+    //         result = &#039;No action taken.&#039;; 
+    //     } 
+    //     return result; 
+    // }
+    activeUserSearch(activeUser, accounts, accessUser, account) {
         if (activeUser &amp;&amp; accessUser) {
-            for (let i = 0; i &lt; accounts.length; i++) {
-                if (accounts[i] === account) {
-                    result += &#039;User found: &#039; + account + &#039; at index &#039; + i;
-                    break;
-                }
-            }
+            const index = accounts.indexOf(account);
+            return &#039;User found: &#039; + account + &#039; at index &#039; + index;
         }
-        else if (!activeUser &amp;&amp; accessUser) {
-            let count = 0;
-            while (count &lt; numberOfTry) {
-                result += &#039;Processing... &#039;;
-                count++;
-            }
-        }
-        else {
-            result = &#039;No action taken.&#039;;
+        return &#039;&#039;;
+    }
+    processingCollect(numberOfTry) {
+        let result = &quot;&quot;;
+        for (let i = 0; i &lt; numberOfTry; i++) {
+            result += &#039;Processing... &#039;;
         }
         return result;
+    }
+    inactiveUserSearch(activeUser, accessUser, numberOfTry) {
+        if (!activeUser &amp;&amp; accessUser) {
+            return this.processingCollect(numberOfTry);
+        }
+        return &#039;&#039;;
+    }
+    processUserData(x, y, activeUser, accounts, b, accessUser, account, numberOfTry) {
+        let result = this.activeUserSearch(activeUser, accounts, accessUser, account) + this.inactiveUserSearch(activeUser, accessUser, numberOfTry);
+        return result ? result : &#039;No action taken.&#039;;
     }
 }
 exports.UserData = UserData;</textarea>
