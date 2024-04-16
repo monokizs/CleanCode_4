@@ -20,7 +20,38 @@ describe('login tests', () => {
     })
 
     describe('Error path',()=>{
-        it('should return false', () => {
+        it('should return false because of empty ', () => {
+            // Arrange
+            const input=""
+
+            // Act
+            const result = login.validateUserInput(input);
+
+            // Assert
+            expect(result).toBeFalsy;
+        })
+
+        it('should return false because of length to short ', () => {
+            // Arrange
+            const input="MZs"
+
+            // Act
+            const result = login.validateUserInput(input);
+
+            // Assert
+            expect(result).toBeFalsy;
+        })
+        it('should return false because of length to long ', () => {
+            // Arrange
+            const input="Monoki Zsolt Monoki Zsolt"
+
+            // Act
+            const result = login.validateUserInput(input);
+
+            // Assert
+            expect(result).toBeFalsy;
+        })
+        it('should return false because of @ ', () => {
             // Arrange
             const input="Monoki@Zsolt"
 

@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">28</p>
+      <p class="stat">48</p>
     </div>
   </div>
   <div class="row historical">
@@ -93,19 +93,39 @@
 Object.defineProperty(exports, &quot;__esModule&quot;, { value: true });
 exports.UserData = void 0;
 class UserData {
-    processUserData(x, y, z, a, b, c, d, e) {
+    // public processUserData(x: number, y: string, z: boolean, a: string[], b: number, c: boolean, d: string, e: number): string { 
+    //     let result = &#039;&#039;; 
+    //     if (z &amp;&amp; c) { 
+    //         for (let i = 0; i &lt; a.length; i++) { 
+    //             if (a[i] === d) { 
+    //                 result += &#039;User found: &#039; + d + &#039; at index &#039; + i; 
+    //                 break; 
+    //             } 
+    //         } 
+    //     } else if (!z &amp;&amp; c) { 
+    //         let count = 0; 
+    //         while (count &lt; e) { 
+    //             result += &#039;Processing... &#039;; 
+    //             count++; 
+    //         } 
+    //     } else { 
+    //         result = &#039;No action taken.&#039;; 
+    //     } 
+    //     return result; 
+    // }
+    processUserData(x, y, activeUser, accounts, b, accessUser, account, numberOfTry) {
         let result = &#039;&#039;;
-        if (z &amp;&amp; c) {
-            for (let i = 0; i &lt; a.length; i++) {
-                if (a[i] === d) {
-                    result += &#039;User found: &#039; + d + &#039; at index &#039; + i;
+        if (activeUser &amp;&amp; accessUser) {
+            for (let i = 0; i &lt; accounts.length; i++) {
+                if (accounts[i] === account) {
+                    result += &#039;User found: &#039; + account + &#039; at index &#039; + i;
                     break;
                 }
             }
         }
-        else if (!z &amp;&amp; c) {
+        else if (!activeUser &amp;&amp; accessUser) {
             let count = 0;
-            while (count &lt; e) {
+            while (count &lt; numberOfTry) {
                 result += &#039;Processing... &#039;;
                 count++;
             }
