@@ -118,17 +118,17 @@ class Login {
     //     }
     //     return true;
     //   }
-    inputNotEmpty(input) {
+    isInputNotEmpty(input) {
         return input.trim() !== &#039;&#039;;
     }
-    inputGoodLength(input) {
+    isInputGoodLength(input) {
         return input.length &gt;= 5 &amp;&amp; input.length &lt;= 20;
     }
-    inputGoodCharacters(input) {
+    isInputGoodCharacters(input) {
         return (/^[a-zA-Z0-9]+$/.test(input));
     }
     validateUserInput(input) {
-        return this.inputNotEmpty(input) &amp;&amp; this.inputGoodLength(input) &amp;&amp; this.inputGoodCharacters(input);
+        return this.isInputNotEmpty(input) &amp;&amp; this.isInputGoodLength(input) &amp;&amp; this.isInputGoodCharacters(input);
     }
 }
 exports.Login = Login;</textarea>

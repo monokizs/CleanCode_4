@@ -29,22 +29,18 @@ export class Calculator {
     //     }
     //   }
 
-    private  gradeTable: Record<number, string> = {
-        10: "A",
-        9: "A",
-        8: "B",
-        7: "C",
-        6: "D",
-        5: "D",
-        4: "D",
-        3: "D",
-        2: "D",
-        1: "D",
-        0: "D"
-      };
-      
+      private checkLimit(limit: { limit: number, grade: string }, score: number): string | undefined {
+        return score < limit.limit ? limit.grade : undefined;
+      }
+
+
       public calculateGrade(score: number): string {
-        return this.gradeTable[Math.floor(score/10)];
+        const limits = [{limit: 90, grade: 'B'}, {limit: 80, grade: 'C'}, {limit: 70, grade: 'D'}];
+        let grade = 'A';
+
+        limits.forEach(limit => grade = this.checkLimit(limit, score) ?? grade);
+
+        return grade;
       }
 
 }

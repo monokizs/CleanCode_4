@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">70.95</p>
+      <p class="stat">72.84</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">51</p>
+      <p class="stat">42</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">7.83</p>
+      <p class="stat">18.67</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.14</p>
+      <p class="stat">0.19</p>
     </div>
   </div>
 </div>
@@ -93,50 +93,41 @@
 Object.defineProperty(exports, &quot;__esModule&quot;, { value: true });
 exports.Calculator = void 0;
 class Calculator {
-    constructor() {
-        // public calculateGrade(score: number): string { 
-        //     if (score &gt;= 90) { 
-        //         return &#039;A&#039;; 
-        //     } else { 
-        //         if (score &gt;= 80) { 
-        //             return &#039;B&#039;; 
-        //         } else { 
-        //             if (score &gt;= 70) { 
-        //                 return &#039;C&#039;; 
-        //             } else { 
-        //                 return &#039;D&#039;; 
-        //             } 
-        //         } 
-        //     } 
-        // } 
-        // public calculateGrade(score: number): string {
-        //     switch (true) {
-        //       case score &gt;= 90:
-        //         return &#039;A&#039;;
-        //       case score &gt;= 80:
-        //         return &#039;B&#039;;
-        //       case score &gt;= 70:
-        //         return &#039;C&#039;;
-        //       default:
-        //         return &#039;D&#039;;
-        //     }
-        //   }
-        this.gradeTable = {
-            10: &quot;A&quot;,
-            9: &quot;A&quot;,
-            8: &quot;B&quot;,
-            7: &quot;C&quot;,
-            6: &quot;D&quot;,
-            5: &quot;D&quot;,
-            4: &quot;D&quot;,
-            3: &quot;D&quot;,
-            2: &quot;D&quot;,
-            1: &quot;D&quot;,
-            0: &quot;D&quot;
-        };
+    // public calculateGrade(score: number): string { 
+    //     if (score &gt;= 90) { 
+    //         return &#039;A&#039;; 
+    //     } else { 
+    //         if (score &gt;= 80) { 
+    //             return &#039;B&#039;; 
+    //         } else { 
+    //             if (score &gt;= 70) { 
+    //                 return &#039;C&#039;; 
+    //             } else { 
+    //                 return &#039;D&#039;; 
+    //             } 
+    //         } 
+    //     } 
+    // } 
+    // public calculateGrade(score: number): string {
+    //     switch (true) {
+    //       case score &gt;= 90:
+    //         return &#039;A&#039;;
+    //       case score &gt;= 80:
+    //         return &#039;B&#039;;
+    //       case score &gt;= 70:
+    //         return &#039;C&#039;;
+    //       default:
+    //         return &#039;D&#039;;
+    //     }
+    //   }
+    checkLimit(limit, score) {
+        return score &lt; limit.limit ? limit.grade : undefined;
     }
     calculateGrade(score) {
-        return this.gradeTable[Math.floor(score / 10)];
+        const limits = [{ limit: 90, grade: &#039;B&#039; }, { limit: 80, grade: &#039;C&#039; }, { limit: 70, grade: &#039;D&#039; }];
+        let grade = &#039;A&#039;;
+        limits.forEach(limit =&gt; { var _a; return grade = (_a = this.checkLimit(limit, score)) !== null &amp;&amp; _a !== void 0 ? _a : grade; });
+        return grade;
     }
 }
 exports.Calculator = Calculator;</textarea>

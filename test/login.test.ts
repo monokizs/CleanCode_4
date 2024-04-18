@@ -20,46 +20,22 @@ describe('login tests', () => {
     })
 
     describe('Error path',()=>{
-        it('should return false because of empty ', () => {
+        
+        it.each([
+            ["", false],
+            ["MZs",false],
+            ["Monoki Zsolt Monoki Zsolt",false],
+            ["Monoki@Zsolt", false]
+            
+        ])('should return false because input is bad', (input: string, expectedResult: boolean) => {
+    
             // Arrange
-            const input=""
-
+                
             // Act
-            const result = login.validateUserInput(input);
-
+            const result = login.validateUserInput(input)
+    
             // Assert
-            expect(result).toBeFalsy;
-        })
-
-        it('should return false because of length to short ', () => {
-            // Arrange
-            const input="MZs"
-
-            // Act
-            const result = login.validateUserInput(input);
-
-            // Assert
-            expect(result).toBeFalsy;
-        })
-        it('should return false because of length to long ', () => {
-            // Arrange
-            const input="Monoki Zsolt Monoki Zsolt"
-
-            // Act
-            const result = login.validateUserInput(input);
-
-            // Assert
-            expect(result).toBeFalsy;
-        })
-        it('should return false because of @ ', () => {
-            // Arrange
-            const input="Monoki@Zsolt"
-
-            // Act
-            const result = login.validateUserInput(input);
-
-            // Assert
-            expect(result).toBeFalsy;
+            expect(result).toBe(expectedResult);
         })
     })
 })
